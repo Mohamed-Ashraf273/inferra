@@ -1,4 +1,13 @@
-namex
-ruff
-pre-commit
 setuptools
+# Library deps.
+dm-tree
+regex
+# Tooling deps.
+pre-commit
+astor
+packaging
+ruff
+pytest
+pytest-cov
+build
+namex
