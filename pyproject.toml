@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools >=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "inferra"
+authors = [
+    {name = "Inferra contributors", email = "ma2736666@gmail.com"},
+]
+description = "Pretrained models and tools for Inferra."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+dynamic = ["version"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: Unix",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development",
+]
+dependencies = [
+    "keras>=3.5",
+    "absl-py",
+    "numpy",
+    "packaging",
+    "regex",
+    "rich",
+    "kagglehub",
+    "tensorflow-text;platform_system != 'Windows'",
+]
+
+[project.urls]
+Home = "https://github.com/your-org/inferra"
+Repository = "https://github.com/your-org/inferra"
+
+[tool.setuptools.dynamic]
+version = {attr = "inferra.src.version.__version__"}
+
+[tool.setuptools.package-dir]
+"" = "."
+"inferra" = "inferra/src"
+"inferra.src" = "inferra/src"
+
+[tool.ruff]
+line-length = 80
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle error
+    "F",  # Pyflakes
+    "I",  # isort
+]
+ignore = [
+    "E741",  # ambiguous variable name
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["E501", "F401"]  # lines too long; imported but unused
+
+[tool.ruff.lint.isort]
+force-single-line = true
+known-first-party = ["inferra"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning",
+    "ignore::ImportWarning",
+    "ignore::RuntimeWarning",
+    "ignore::PendingDeprecationWarning",
+    "ignore::FutureWarning",
+    "ignore::UserWarning",
+]
+addopts = "-vv"
+
+# Do not run tests in the `build` folders
+norecursedirs = ["build"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "@abstract",
+    "raise NotImplementedError",
+]
+omit = [
+    "*/*_test.py",
+]
+
+[tool.coverage.run]
+branch = true
+omit = [
+    "*/*_test.py",
+]
+
