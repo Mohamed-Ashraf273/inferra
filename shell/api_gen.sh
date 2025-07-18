@@ -9,9 +9,9 @@ then
     exit 1
 fi
 
-echo "Generating api directory with public APIs..."
-# Generate API Files
-python3 "${base_dir}"/api_gen.py
+# echo "Generating api directory with public APIs..."
+# # Generate API Files
+# python3 "${base_dir}"/api_gen.py
 
 # Format code because `api_gen.py` might order
 # imports differently.
