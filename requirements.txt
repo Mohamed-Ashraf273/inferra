@@ -1,3 +1,4 @@
 namex
 ruff
 pre-commit
+setuptools
