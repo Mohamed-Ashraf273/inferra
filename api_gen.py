@@ -36,7 +36,9 @@ def export_version_string(api_init_fname):
     with open(api_init_fname) as f:
         contents = f.read()
     with open(api_init_fname, "w") as f:
-        contents += "from inferra.src.version import __version__ as __version__\n"
+        contents += (
+            "from inferra.src.version import __version__ as __version__\n"
+        )
         f.write(contents)
 
 
@@ -59,7 +61,9 @@ def build():
             shutil.rmtree(build_src_dir)
         if os.path.exists(code_api_dir):
             shutil.rmtree(code_api_dir)
-        shutil.copytree(build_api_dir, code_api_dir, ignore=shutil.ignore_patterns("src"))
+        shutil.copytree(
+            build_api_dir, code_api_dir, ignore=shutil.ignore_patterns("src")
+        )
     finally:
         # Clean up: remove the build directory (no longer needed)
         shutil.rmtree(build_dir)
