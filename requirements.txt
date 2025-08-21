@@ -14,9 +14,7 @@ build
 dm-tree
 huggingface_hub
 scikit-learn
-mediapipe
 opencv-python
-streamlit
 # Dev & Testing Tools
 pre-commit
 astor
