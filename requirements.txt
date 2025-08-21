@@ -1,22 +1,26 @@
-#frameworks
+# Deep Learning Frameworks
 tensorflow-cpu~=2.19.0;sys_platform != 'darwin'
 tensorflow~=2.19.0;sys_platform == 'darwin'
 tensorflow-text~=2.19;platform_system != 'Windows'
-# Torch.
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch>=2.6.0
 torchvision>=0.16.0
-# Library deps.
+# Core Python Utilities
 setuptools
-dm-tree
 regex
-# Tooling deps.
+packaging
+build
+# ML/DL Libraries & Tools
+dm-tree
 huggingface_hub
+scikit-learn
+mediapipe
+opencv-python
+streamlit
+# Dev & Testing Tools
 pre-commit
 astor
-packaging
 ruff
 pytest
 pytest-cov
-build
 namex
