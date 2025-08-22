@@ -23,6 +23,14 @@ To create a platform where AI models can be **easily hosted, explored, and used*
 
 ---
 
+## 🚀 Run the App (For Everyone)
+
+If you just want to **try Inferra** without setting up the development environment, you can run the app directly here:  
+
+👉 [Inferra Live App](https://inferra-git.streamlit.app/)
+
+---
+
 ## 🛠️ Contribution Guide (For Developers)
 
 We welcome contributions from everyone — whether you want to improve the platform, add new models, or help with documentation. Here’s how you can get started:
