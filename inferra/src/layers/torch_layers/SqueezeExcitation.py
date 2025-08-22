@@ -1,18 +1,11 @@
 import torch
 import torch.nn as nn
 
-
-class Swish(nn.Module):
-    def forward(self, x):
-        return x * torch.sigmoid(x)
+from inferra.src.layers.torch_layers.layer import TorchLayer
+from inferra.src.layers.torch_layers.Swish import Swish
 
 
-class Flatten(nn.Module):
-    def forward(self, x):
-        return x.reshape(x.shape[0], -1)
-
-
-class SqueezeExcitation(nn.Module):
+class SqueezeExcitation(TorchLayer):
     def __init__(self, inplanes, se_planes):
         super(SqueezeExcitation, self).__init__()
         self.reduce_expand = nn.Sequential(

@@ -27,7 +27,7 @@ classifiers = [
     "Topic :: Software Development",
 ]
 dependencies = [
-    "keras>=3.5",
+    "keras>=3.10",
     "absl-py",
     "numpy",
     "packaging",
@@ -99,4 +99,3 @@ branch = true
 omit = [
     "*/*_test.py",
 ]
-
