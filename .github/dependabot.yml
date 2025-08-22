@@ -13,10 +13,15 @@ updates:
       github-actions:
         patterns:
           - "*"
+
   - package-ecosystem: "pip"
-    directory: "/" # Change if your requirements.txt is in a subfolder
+    directory: "/"  # Change if your requirements.txt is in a subfolder
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "tensorflow"
+      - dependency-name: "tensorflow-cpu"
+      - dependency-name: "tensorflow-text"
     groups:
       python:
         patterns:
