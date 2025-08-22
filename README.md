@@ -41,10 +41,6 @@ We welcome contributions from everyone — whether you want to improve the platf
     git checkout -b my-feature
     ```
 4. **Make your changes**, following these guidelines:
-    - Run pre-commit hooks before staging changes:
-      ```bash
-      pre-commit run --all-files --hook-stage manual
-      ```
     - Add new **model architectures** in `src/models` using `torch_model` or `tensorflow_model`.  
     - If you create **new layers**, add them under `src/layers/`.  
     - Create your own app in `app/apps` if necessary.  
@@ -52,6 +48,7 @@ We welcome contributions from everyone — whether you want to improve the platf
 
 5. **Commit and push** your changes:
     ```bash
+    pre-commit run --all-files --hook-stage manual
     git add .
     git commit -m "Describe your changes"
     git push origin my-feature
