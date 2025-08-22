@@ -60,14 +60,6 @@ We welcome contributions from everyone — whether you want to improve the platf
 
 ---
 
-## 📖 Reporting Issues
-
-If you find a bug or want a new feature:  
-- Open an issue on GitHub with **detailed information**, screenshots, or error logs if applicable.  
-- Join our **[GitHub Discussions](https://github.com/Mohamed-Ashraf273/inferra/discussions)** to ask questions or suggest features.
-
----
-
 ## 💡 Get Involved
 
 - Add new pre-trained models or layers.  
