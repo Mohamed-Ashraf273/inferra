@@ -1,3 +1,4 @@
+import os
 import tempfile
 
 import requests
@@ -108,6 +109,11 @@ def main():
                         result = response.json()
                         st.success("✅ Classified successfully!")
                         prediction = result["pred_class"]
+                        prediction_with_ext = os.path.splitext(prediction)[0]
+                        prediction = " ".join(
+                            word.capitalize()
+                            for word in prediction_with_ext.split("_")
+                        )
 
                         st.markdown(
                             f"""
@@ -124,7 +130,7 @@ def main():
                                 box-shadow: 0 4px 12px rgba(0,0,0,0.3);
                                 margin-top: 20px;
                             ">
-                                🎵 Prediction: {prediction}
+                                🎵 {prediction}
                             </div>
                             """,
                             unsafe_allow_html=True,
