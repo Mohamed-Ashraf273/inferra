@@ -2,6 +2,7 @@
 tensorflow
 torch
 torchvision
+torchaudio
 # Core Python Utilities
 setuptools
 regex
@@ -12,7 +13,10 @@ dm-tree
 huggingface_hub
 scikit-learn
 opencv-python
+pandas
+numpy
 # Dev & Testing Tools
+tqdm
 pre-commit
 astor
 ruff
