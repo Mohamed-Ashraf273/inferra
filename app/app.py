@@ -28,7 +28,7 @@ ALL_PAGES = {**CORE_PAGES, **APPS}
 
 
 if "active_page" not in st.session_state:
-    st.session_state.active_page = "🏠 Welcome"
+    st.session_state.active_page = "Welcome"
 if "is_app" not in st.session_state:
     st.session_state.is_app = False
 
