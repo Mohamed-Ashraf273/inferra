@@ -5,31 +5,21 @@ import streamlit as st
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-CORE_PAGES = ["welcome.py", "contribution_guide.py"]
-core_display_to_file = {}
-for f in CORE_PAGES:
-    name_without_ext = os.path.splitext(f)[0]
-    display_name = " ".join(
-        word.capitalize() for word in name_without_ext.split("_")
-    )
-    core_display_to_file[display_name] = name_without_ext
+CORE_PAGES = {
+    "Welcome": "welcome.py",
+    "Contribution Guide": "contribution_guide.py",
+}
 
 APPS_FOLDER = os.path.join(BASE_DIR, "apps")
-app_files = []
-if os.path.exists(APPS_FOLDER):
-    app_files = [
-        f
-        for f in os.listdir(APPS_FOLDER)
-        if f.endswith(".py") and not f.startswith("__")
-    ]
+APPS = {}
 
-app_display_to_file = {}
-for f in app_files:
-    name_without_ext = os.path.splitext(f)[0]
-    display_name = " ".join(
-        word.capitalize() for word in name_without_ext.split("_")
-    )
-    app_display_to_file[display_name] = os.path.join("apps", name_without_ext)
+if os.path.exists(APPS_FOLDER):
+    for f in sorted(os.listdir(APPS_FOLDER)):
+        app_path = os.path.join(APPS_FOLDER, f, "app.py")
+        if os.path.isdir(os.path.join(APPS_FOLDER, f)) and os.path.exists(
+            app_path
+        ):
+            APPS[f] = app_path
 
 st.markdown(
     """
@@ -72,8 +62,7 @@ st.markdown(
         color: #333 !important;
         border-radius: 12px !important;
         cursor: pointer;
-        background: linear-gradient(135deg, #f0f4f8, #d9e2ec) 
-        !important; /* soft pastel gradient */
+        background: linear-gradient(135deg, #f0f4f8, #d9e2ec) !important;
         box-shadow: 0 3px 6px rgba(0,0,0,0.05);
         transition: transform 0.2s, background 0.3s;
         text-align: center !important;
@@ -100,44 +89,47 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-selected_core_page = st.sidebar.radio(
-    label="",  # no title
-    options=list(core_display_to_file.keys()),
-    index=list(core_display_to_file.keys()).index("Welcome")
-    if "Welcome" in core_display_to_file
-    else 0,
+core_choice = st.sidebar.radio(
+    label="",
+    options=list(CORE_PAGES.keys()),
+    index=0,
+    key="core_radio",
 )
 
-app_display_names = list(app_display_to_file.keys())
-selected_app_page = (
-    st.sidebar.selectbox("Select an app", app_display_names)
-    if app_display_names
-    else None
-)
+script_path = os.path.join(BASE_DIR, CORE_PAGES[core_choice])
+is_app = False
+label = core_choice
 
-if selected_core_page:
-    selected_script = core_display_to_file[selected_core_page]
-elif selected_app_page:
-    selected_script = app_display_to_file[selected_app_page]
-else:
-    selected_script = None
+if APPS:
+    with st.sidebar.expander("🧪 Developer Apps", expanded=False):
+        app_options = ["— Select an app —"] + list(APPS.keys())
+        app_choice = st.selectbox(
+            "Choose App",
+            app_options,
+            index=0,
+            key="app_select",
+        )
+        if app_choice and app_choice != "— Select an app —":
+            script_path = APPS[app_choice]
+            is_app = True
+            label = app_choice
 
 
-def load_script(script_name):
-    script_path = os.path.join(BASE_DIR, script_name + ".py")
-    spec = importlib.util.spec_from_file_location(
-        script_name.replace("/", "_"), script_path
-    )
+def load_script(script_path, is_app=False):
+    if is_app:
+        module_name = os.path.basename(os.path.dirname(script_path))
+    else:
+        module_name = os.path.splitext(os.path.basename(script_path))[0]
+
+    spec = importlib.util.spec_from_file_location(module_name, script_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
 
-if selected_script:
-    module = load_script(selected_script)
+if script_path:
+    module = load_script(script_path, is_app)
     if hasattr(module, "main"):
         module.main()
     else:
-        st.write("No `main()` function found in this script.")
-else:
-    st.write("Select a core page or developer app to begin.")
+        st.warning(f"⚠️ No `main()` function found in {label}.")

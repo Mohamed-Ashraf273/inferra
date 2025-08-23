@@ -33,9 +33,4 @@ class ResidualBlock(TorchLayer):
         out = self.bn2(out)
         shortcut = self.shortcut(x) if self.use_shortcut else x
         out_add = out + shortcut
-        if fmap_dict is not None:
-            fmap_dict[f"{prefix}.conv"] = out_add
-        out = torch.relu(out_add)
-        if fmap_dict is not None:
-            fmap_dict[f"{prefix}.relu"] = out
-        return out
+        return out_add
