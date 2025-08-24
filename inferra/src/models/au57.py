@@ -1,9 +1,10 @@
 import torch.nn as nn
 
 from inferra.src.layers.torch_layers.ResidualBlock import ResidualBlock
+from inferra.src.models.torch_model import TorchModel
 
 
-class Au57(nn.Module):
+class Au57(TorchModel):
     """
     Au57: A deep convolutional neural network model
     based on residual blocks.

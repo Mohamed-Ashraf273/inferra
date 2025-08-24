@@ -6,4 +6,5 @@ since your modifications would be overwritten.
 
 from inferra.src import layers as layers
 from inferra.src import models as models
+from inferra.src import utils as utils
 from inferra.src.version import __version__ as __version__

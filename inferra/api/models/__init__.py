@@ -6,3 +6,6 @@ since your modifications would be overwritten.
 
 from inferra.src.models import au57 as au57
 from inferra.src.models import au57_test as au57_test
+from inferra.src.models import tensorflow_model as tensorflow_model
+from inferra.src.models import torch_model as torch_model
+from inferra.src.models import torch_model_test as torch_model_test
