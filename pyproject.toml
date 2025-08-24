@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "inferra"
 authors = [
-    {name = "Inferra contributors", email = "ma2736666@gmail.com"},
+    {name = "Mohamed Ashraf", email = "ma2736666@gmail.com"},
 ]
-description = "Pretrained models and tools for Inferra."
+description = "Inferra is an open-source platform to host, explore, and run pre-trained ML, DL, and NLP models with an interactive UI."
 readme = "README.md"
 requires-python = ">=3.9"
 license = "Apache-2.0"

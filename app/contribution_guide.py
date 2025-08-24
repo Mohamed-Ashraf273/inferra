@@ -96,11 +96,16 @@ pre-commit run --all-files --hook-stage manual
 </code></pre>
 </li>
 <li>Add new model architectures in <code>src/models</code> 
-using <code>torch_model</code>
- (PyTorch) or <code>tensorflow_model</code> (TensorFlow).</li>
 <li>If you create new layers, add them under <code>src/layers/</code> 
 (either <code>torch_layers</code> or <code>tensorflow_layers</code>).</li>
-<li>Create your own app in the <code>app/apps</code> directory.</li>
+<li>To create your own app in Inferra, make a new directory inside 
+      <code>app/apps/</code> with the desired app name 
+      (e.g., <code>app/apps/my_app/</code>); 
+      the directory name will be used to generate the app’s display name 
+      in the UI (e.g., <code>my_app</code> → <code>My App</code>). 
+      This directory must contain an <code>app.py</code>
+      file, without it, the app will not be recognized or 
+      runnable by Inferra.</li>
 <li>Upload your trained model or weights to cloud 
 storage (Google Drive, AWS S3, etc.)
  and load them in your app. No large model files 

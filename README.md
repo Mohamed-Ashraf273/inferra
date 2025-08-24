@@ -1,4 +1,4 @@
-# 🚀 Inferra
+# Inferra
 
 **Inferra** is an open-source platform for hosting, sharing, and running **pre-trained Machine Learning, Deep Learning, and NLP models**.  
 It provides a simple and interactive UI to explore models, make predictions, and deploy them with ease, making model inference accessible to teams, researchers, and enthusiasts alike.
@@ -7,7 +7,7 @@ We are a group of students from the **Faculty of Engineering, Cairo University**
 
 ---
 
-## 🌟 Why Inferra?
+## Why Inferra?
 
 - **Central Model Hub** – Store and manage all your models in one convenient place.  
 - **Easy Inference** – Run predictions from the UI with minimal setup.  
@@ -17,13 +17,13 @@ We are a group of students from the **Faculty of Engineering, Cairo University**
 
 ---
 
-## 🎯 Our Vision
+## Our Vision
 
 To create a platform where AI models can be **easily hosted, explored, and used**, empowering researchers, developers, and enthusiasts to leverage AI **without the overhead of setup or integration**.
 
 ---
 
-## 🚀 Run the App (For Everyone)
+## Run the App (For Everyone)
 
 If you just want to **try Inferra** without setting up the development environment, you can run the app directly here:  
 
@@ -31,7 +31,7 @@ If you just want to **try Inferra** without setting up the development environme
 
 ---
 
-## 🛠️ Contribution Guide (For Developers)
+## Contribution Guide (For Developers)
 
 We welcome contributions from everyone — whether you want to improve the platform, add new models, or help with documentation. Here’s how you can get started:
 
@@ -49,10 +49,20 @@ We welcome contributions from everyone — whether you want to improve the platf
     git checkout -b my-feature
     ```
 4. **Make your changes**, following these guidelines:
-    - Add new **model architectures** in `src/models` using `torch_model` or `tensorflow_model`.  
+    - Add new **model architectures** in `src/models`. 
     - If you create **new layers**, add them under `src/layers/`.  
-    - Create your own app in `app/apps` if necessary.  
-    - Upload trained model weights to cloud storage (Google Drive, AWS S3, etc.) — **do not include large model files in the repo**.  
+    - To create your own app in Inferra, make a new directory inside 
+      `app/apps/` with the desired app name (e.g., `app/apps/my_app/`); 
+      the directory name will be used to generate the app’s display name 
+      in the UI (e.g., `my_app` → `My App`). This directory must contain an `app.py`
+      file—without it, the app will not be recognized or runnable by Inferra.
+      ```
+       app/
+       └─ apps/
+         └─ my_app/
+           └─ app.py
+      ```
+    - Upload trained model weights to cloud storage (Hugging Face, Google Drive, AWS S3, etc.) — **do not include large model files in the repo**.  
 
 5. **Commit and push** your changes:
     ```bash
@@ -65,7 +75,7 @@ We welcome contributions from everyone — whether you want to improve the platf
 
 ---
 
-## 💡 Get Involved
+## Get Involved
 
 - Add new pre-trained models or layers.  
 - Improve the web interface and UX.  
@@ -75,5 +85,5 @@ We welcome contributions from everyone — whether you want to improve the platf
 
 ---
 
-Happy coding! 🚀  
+Happy coding!
 **Join the Inferra community and help make AI accessible for everyone!**
