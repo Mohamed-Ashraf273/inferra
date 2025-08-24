@@ -1,64 +1,62 @@
 import torch.nn as nn
 
 from inferra.src.layers.torch_layers.ResidualBlock import ResidualBlock
-from inferra.src.models.torch_model import TorchModel
 
 
-class Au57(TorchModel):
-    class Au57(TorchModel):
-        """
-        Au57: A deep convolutional neural network model
-        based on residual blocks.
+class Au57(nn.Module):
+    """
+    Au57: A deep convolutional neural network model
+    based on residual blocks.
 
-        This model is designed for classification tasks and consists of:
-        - An initial convolutional layer with batch normalization
-          and ReLU activation.
-        - Four residual layers (res_layer1 to res_layer4)
-          composed of ResidualBlock modules.
-        - Adaptive average pooling to reduce feature maps to 1x1 spatial size.
-        - Flattening, dropout, and a fully connected layer
-          to produce class logits.
+    This model is designed for classification tasks and consists of:
+    - An initial convolutional layer with batch normalization
+      and ReLU activation.
+    - Four residual layers (res_layer1 to res_layer4)
+      composed of ResidualBlock modules.
+    - Adaptive average pooling to reduce feature maps to 1x1 spatial size.
+    - Flattening, dropout, and a fully connected layer
+      to produce class logits.
 
-        Architecture:
-        -------------
-        Input: single-channel image/tensor (e.g., spectrogram)
-        of shape [batch_size, 1, height, width]
-        conv1 -> res_layer1 -> res_layer2 -> res_layer3 -> res_layer4
-        -> avg_pool -> flatten -> dropout -> fc (num_classes output)
+    Architecture:
+    -------------
+    Input: single-channel image/tensor (e.g., spectrogram)
+    of shape [batch_size, 1, height, width]
+    conv1 -> res_layer1 -> res_layer2 -> res_layer3 -> res_layer4
+    -> avg_pool -> flatten -> dropout -> fc (num_classes output)
 
-        Parameters:
-        -----------
-        num_classes : int, default=50
-            Number of output classes for the final fully connected layer.
+    Parameters:
+    -----------
+    num_classes : int, default=50
+        Number of output classes for the final fully connected layer.
 
-        Notes:
-        ------
-        - The model expects **1 input channel**.
-          If your input has multiple channels,
-          you must convert or preprocess it to a
-          single-channel format.
-        - ResidualBlock modules are used for all
-          residual layers to allow deeper architectures
-          without vanishing gradient issues.
+    Notes:
+    ------
+    - The model expects **1 input channel**.
+      If your input has multiple channels,
+      you must convert or preprocess it to a
+      single-channel format.
+    - ResidualBlock modules are used for all
+      residual layers to allow deeper architectures
+      without vanishing gradient issues.
 
-        Methods:
-        --------
-        forward(x)
-            Defines the forward pass of the network.
-            x : torch.Tensor
-                Input tensor of shape [batch_size, 1, height, width]
-            Returns:
-                torch.Tensor of shape [batch_size, num_classes]
-                containing raw class scores (logits).
+    Methods:
+    --------
+    forward(x)
+        Defines the forward pass of the network.
+        x : torch.Tensor
+            Input tensor of shape [batch_size, 1, height, width]
+        Returns:
+            torch.Tensor of shape [batch_size, num_classes]
+            containing raw class scores (logits).
 
-        Example:
-        --------
-        >>> model = Au57(num_classes=10)
-        >>> input_tensor = torch.randn(8, 1, 128, 128)
-        >>> output = model(input_tensor)
-        >>> output.shape
-        torch.Size([8, 10])
-        """
+    Example:
+    --------
+    >>> model = Au57(num_classes=10)
+    >>> input_tensor = torch.randn(8, 1, 128, 128)
+    >>> output = model(input_tensor)
+    >>> output.shape
+    torch.Size([8, 10])
+    """
 
     def __init__(self, num_classes=50):
         super(Au57, self).__init__()
