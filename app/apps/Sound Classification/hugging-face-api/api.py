@@ -7,7 +7,7 @@ import torchaudio.transforms as transforms
 from fastapi import FastAPI
 from fastapi import UploadFile
 
-from inferra.src.models.au57 import Au57  # your custom class
+from inferra.src.models.au57 import Au57
 
 device = torch.device("cpu")
 model = Au57(num_classes=50).to(device)
