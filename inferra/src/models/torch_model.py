@@ -15,12 +15,17 @@ class TorchModel(nn.Module):
         super().__init__()
         self.best_state_dict = None
 
-    def summary(self, input_size=None):
+    def summary(self):
         """
-        Print a summary of the model (like tf.keras.Model.summary).
+        Print a summary of the model
         """
-        if input_size is None:
+        try:
             input_size = getattr(self, "input_size", (None, None, None, None))
+        except AttributeError:
+            print_msg(
+                "Warning: Summary may fail if self.input_size isn’t "
+                "set while using input_size in your model."
+            )
 
         table = Table(title="Model Summary", show_lines=True)
         table.add_column("Index", style="cyan", justify="center")
@@ -67,8 +72,15 @@ class TorchModel(nn.Module):
                 hooks.append(module.register_forward_hook(hook_fn))
 
         self.eval()
-        with torch.no_grad():
-            self(dummy_input)
+        try:
+            with torch.no_grad():
+                self(dummy_input)
+        except RuntimeError:
+            raise RuntimeError(
+                "Summary failed: input_size used without setting "
+                "self.input_size. Please define it in your model "
+                "and try again."
+            )
 
         for h in hooks:
             h.remove()
