@@ -19,9 +19,9 @@ class TorchModel(nn.Module):
         """
         Print a summary of the model
         """
-        try:
-            input_size = getattr(self, "input_size", (None, None, None, None))
-        except AttributeError:
+        input_size = getattr(self, "input_size", None)
+        if input_size is None:
+            input_size = (None,) * 4  # (B, C, H, W)
             print_msg(
                 "Warning: Summary may fail if self.input_size isn’t "
                 "set while using input_size in your model."
