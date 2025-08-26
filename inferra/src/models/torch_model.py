@@ -200,10 +200,12 @@ class TorchModel(nn.Module):
 
         return history
 
-    def load_weights(self):
+    def load_weights(self, path=None):
         if self.best_state_dict is not None:
             self.load_state_dict(self.best_state_dict)
             print_msg("Loaded model weights.")
+        elif path is not None:
+            self.load_state_dict(torch.load(path))
         else:
             print_msg(
                 "No weights found. Train the model first.", level="warning"
