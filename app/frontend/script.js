@@ -128,6 +128,63 @@ async function deleteAllChats() {
     }
 }
 
+// Upload audio file to current session
+async function uploadAudio(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    if (!currentSessionId) {
+        alert("Please create a chat session first!");
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+        const response = await fetch(`${API_URL}/sessions/${currentSessionId}/upload-audio`, {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            alert(`Audio uploaded successfully: ${data.filename}`);
+            // Add system message to chat
+            addSystemMessage(`🎵 Audio file "${data.filename}" uploaded and ready for analysis`);
+        } else {
+            alert(`Failed to upload audio: ${data.error}`);
+        }
+    } catch (error) {
+        console.error("Error uploading audio:", error);
+        alert("Failed to upload audio file");
+    }
+    
+    // Reset file input
+    event.target.value = '';
+}
+
+// Add system message to chat
+function addSystemMessage(text) {
+    const messagesContainer = document.getElementById("chatMessages");
+    
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "message system";
+    messageDiv.style.alignSelf = "center";
+    messageDiv.style.maxWidth = "90%";
+    
+    const content = document.createElement("div");
+    content.className = "message-content";
+    content.style.background = "#e3f2fd";
+    content.style.color = "#1565c0";
+    content.textContent = text;
+    
+    messageDiv.appendChild(content);
+    messagesContainer.appendChild(messageDiv);
+    scrollToBottom();
+}
+
 // WebSocket connection
 function connectWebSocket(sessionId) {
     if (ws) {
@@ -303,12 +360,16 @@ function clearChat() {
 function enableInput() {
     document.getElementById("messageInput").disabled = false;
     document.getElementById("sendButton").disabled = false;
+    const audioBtn = document.querySelector(".audio-upload-btn");
+    if (audioBtn) audioBtn.disabled = false;
 }
 
 // Disable input
 function disableInput() {
     document.getElementById("messageInput").disabled = true;
     document.getElementById("sendButton").disabled = true;
+    const audioBtn = document.querySelector(".audio-upload-btn");
+    if (audioBtn) audioBtn.disabled = true;
     updateStatus(false, "No session");
 }
 

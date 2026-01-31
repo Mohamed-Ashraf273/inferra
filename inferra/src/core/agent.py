@@ -6,10 +6,12 @@ from langchain.agents import create_react_agent
 from langchain.memory import ConversationBufferMemory
 
 from inferra.src.llms.grok import GroqModel
+from inferra.src.tools.sound_classifier import SoundClassifier
 
 
 class Agent:
     def __init__(self):
+        self.loaded_audio = None
         self.prompt = hub.pull("hwchase17/react-chat")
         self.llm = self._load_llm()
         self.tools = self._get_tools()
@@ -18,11 +20,15 @@ class Agent:
             input_key="input",
             return_messages=True,
         )
-        self.agent_executor = AgentExecutor(
+        self.agent_executor = self._create_agent_executor()
+
+    def _create_agent_executor(self):
+        return AgentExecutor(
             agent=self._create_agent(),
             tools=self.tools,
             memory=self.memory,
-            max_iterations=3,
+            max_iterations=5,
+            early_stopping_method="generate",
             handle_parsing_errors=True,
         )
 
@@ -32,7 +38,11 @@ class Agent:
         )
 
     def _get_tools(self):
-        return []
+        tools = []
+        tools.append(
+            SoundClassifier(loaded_audio=self.loaded_audio, llm=self.llm)
+        )
+        return tools
 
     def _load_llm(self):
         if "GROK_API_KEY" not in os.environ:
@@ -45,4 +55,5 @@ class Agent:
         return groq_model.model
 
 
-agent = Agent()
+def agent_init(loaded_audio=None):
+    return Agent(loaded_audio=loaded_audio)
