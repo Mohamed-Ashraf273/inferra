@@ -5,6 +5,7 @@ langchain-community==0.0.38
 langchainhub
 langchain-groq==0.1.0
 pydantic>=2.0
+pytest
 uvicorn
 websockets
 groq

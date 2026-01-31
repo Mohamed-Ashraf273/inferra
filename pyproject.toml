@@ -67,6 +67,7 @@ force-single-line = true
 known-first-party = ["inferra"]
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 filterwarnings = [
     "error",
     "ignore::DeprecationWarning",
