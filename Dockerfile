@@ -19,7 +19,7 @@ COPY . .
 EXPOSE 8000 3000
 
 # Make shell scripts executable
-RUN chmod +x /app/shell/start_services.sh
+RUN chmod +x /app/shell/start.sh
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1

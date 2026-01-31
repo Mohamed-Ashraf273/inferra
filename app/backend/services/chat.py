@@ -1,7 +1,6 @@
 from app.backend.models.chat_model import ChatModel
-from inferra.src.core.agent import agent_init
+from inferra.src.core.agent import agent
 
-agent = agent_init()
 chat_model = ChatModel(agent)
 
 

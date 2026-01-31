@@ -7,33 +7,60 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h1>🤖 Inferra Chat Agent</h1>
-            <div class="status" id="status">
-                <span class="status-dot" id="statusDot"></span>
-                <span id="statusText">Connecting...</span>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>💬 Chat Sessions</h2>
+            </div>
+            
+            <div class="sidebar-actions">
+                <button class="btn-primary" onclick="createNewChat()">
+                    <span>➕</span> New Chat
+                </button>
+                <button class="btn-danger" onclick="deleteAllChats()">
+                    <span>🗑️</span> Delete All
+                </button>
+            </div>
+            
+            <div class="sessions-list" id="sessionsList">
+                <div class="no-sessions">No chat sessions yet</div>
             </div>
         </div>
-        
-        <div class="chat-messages" id="chatMessages">
-            <div class="welcome-message">
-                <p>👋 Welcome to Inferra Chat!</p>
-                <p>Start chatting with the AI agent below.</p>
+
+        <!-- Main Chat Area -->
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="header-left">
+                    <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+                    <h1>🤖 Inferra Chat Agent</h1>
+                </div>
+                <div class="status" id="status">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span id="statusText">No session</span>
+                </div>
             </div>
-        </div>
-        
-        <div class="chat-input-container">
-            <textarea 
-                id="messageInput" 
-                placeholder="Type your message here..."
-                rows="1"
-            ></textarea>
-            <button id="sendButton" onclick="sendMessage()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="welcome-message">
+                    <p>👋 Welcome to Inferra Chat!</p>
+                    <p>Click "New Chat" to start a conversation.</p>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <textarea 
+                    id="messageInput" 
+                    placeholder="Type your message here..."
+                    rows="1"
+                    disabled
+                ></textarea>
+                <button id="sendButton" onclick="sendMessage()" disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 

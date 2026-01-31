@@ -45,5 +45,4 @@ class Agent:
         return groq_model.model
 
 
-def agent_init():
-    return Agent()
+agent = Agent()
