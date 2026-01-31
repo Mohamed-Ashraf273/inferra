@@ -2,38 +2,19 @@ import uuid
 from datetime import datetime
 from typing import Dict
 
-from inferra.src.core.agent import Agent
-
-
-class ChatSession:
-    def __init__(self, session_id: str):
-        self.session_id = session_id
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-        self.title = "New Chat"
-        self.agent = Agent()
-        self.message_count = 0
-
-    def to_dict(self):
-        return {
-            "session_id": self.session_id,
-            "title": self.title,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
-            "message_count": self.message_count,
-        }
+from app.backend.core.chat_session import Session
 
 
 class SessionManager:
     def __init__(self):
-        self.sessions: Dict[str, ChatSession] = {}
+        self.sessions: Dict[str, Session] = {}
 
     def create_session(self) -> str:
         session_id = str(uuid.uuid4())
-        self.sessions[session_id] = ChatSession(session_id)
+        self.sessions[session_id] = Session(session_id)
         return session_id
 
-    def get_session(self, session_id: str) -> ChatSession:
+    def get_session(self, session_id: str) -> Session:
         if session_id not in self.sessions:
             raise ValueError(f"Session {session_id} not found")
         return self.sessions[session_id]

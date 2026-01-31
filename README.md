@@ -6,7 +6,10 @@
 - **Frontend**: HTML, CSS, JavaScript (Vanilla)
 - **AI Framework**: LangChain (ReAct Agent Pattern)
 - **LLM Provider**: Groq (llama-3.1-8b-instant)
-- **Agent Tools**: Extensible tool integration system
+- **Agent Tools**: 
+  - Sound Classifier (50+ sound categories)
+  - Extensible tool integration system
+- **Session Management**: Multi-session support with independent conversation contexts
 - **Containerization**: Dockerct with various AI capabilities through natural language.
 
 We are a group of students from the **Faculty of Engineering, Cairo University**, building a versatile chatbot that can access different AI models and tools to assist users with a wide range of tasks.
@@ -19,6 +22,7 @@ We are a group of students from the **Faculty of Engineering, Cairo University**
 - 🔗 **Multi-Model Integration** - Connect and interact with multiple AI models and tools
 - 💬 **Real-time Chat** - WebSocket-based streaming for instant responses
 - 🧠 **Conversational Memory** - Maintains context throughout the conversation
+- 🎵 **Sound Classification** - Upload audio files and get intelligent sound analysis and classification
 ---
 
 ## 🏗️ How It Works
@@ -148,22 +152,15 @@ python -m http.server 3000
 
 ---
 
-## 🎯 Usage
-
-### Chat with the AI Agent
-
-1. Open http://localhost:3000 in your browser
-2. Wait for the connection status to show "Connected"
-3. Type your message and press Enter or click Send
-4. The AI agent will process your request, potentially using multiple tools and models
-5. Watch as the response streams in real-time!
-
-The chatbot can help you with various tasks by leveraging different AI models and tools integrated into the system.
-
 ### API Endpoints
 
 - `GET /` - Health check
-- `WebSocket /ws/chat` - WebSocket endpoint for real-time chat
+- `POST /sessions` - Create a new chat session
+- `GET /sessions` - List all chat sessions
+- `DELETE /sessions/{session_id}` - Delete a specific session
+- `DELETE /sessions` - Delete all sessions
+- `POST /sessions/{session_id}/upload-audio` - Upload audio file to a session
+- `WebSocket /ws/chat/{session_id}` - WebSocket endpoint for real-time chat
 
 ---
 

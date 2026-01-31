@@ -49,6 +49,10 @@
             </div>
             
             <div class="chat-input-container">
+                <button class="audio-upload-btn" onclick="document.getElementById('audioUpload').click()" title="Upload audio file">
+                    🎵
+                </button>
+                <input type="file" id="audioUpload" accept="audio/*" style="display: none;" onchange="uploadAudio(event)">
                 <textarea 
                     id="messageInput" 
                     placeholder="Type your message here..."
