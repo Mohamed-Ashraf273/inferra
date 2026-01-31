@@ -7,7 +7,7 @@ name = "inferra"
 authors = [
     {name = "Mohamed Ashraf", email = "ma2736666@gmail.com"},
 ]
-description = "Inferra is an open-source platform to host, explore, and run pre-trained ML, DL, and NLP models with an interactive UI."
+description = "Inferra an AI chatbot with a user-friendly interface, packed with many powerful and intelligent features to enhance conversations and perform smart tasks."
 readme = "README.md"
 requires-python = ">=3.9"
 license = "Apache-2.0"
@@ -27,14 +27,11 @@ classifiers = [
     "Topic :: Software Development",
 ]
 dependencies = [
-    "keras>=3.10",
     "absl-py",
     "numpy",
     "packaging",
     "regex",
     "rich",
-    "kagglehub",
-    "tensorflow-text;platform_system != 'Windows'",
 ]
 
 [project.urls]

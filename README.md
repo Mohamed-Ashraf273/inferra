@@ -1,39 +1,175 @@
-# Inferra
+# 🤖 Inferra
 
-**Inferra** is an open-source platform for hosting, sharing, and running **pre-trained Machine Learning, Deep Learning, and NLP models**.  
-It provides a simple and interactive UI to explore models, make predictions, and deploy them with ease, making model inference accessible to teams, researchers, and enthusiasts alike.
+**Inferra** is an intelligent AI chatbot powered by **LangChain** and **Groq**, designed to integrate with multiple AI models and tools. It provides a conversational interface where users ca## 🛠️ Technology Stack
 
-We are a group of students from the **Faculty of Engineering, Cairo University**, working to make AI models **easy to use, share, and deploy**.
+- **Backend**: FastAPI, WebSocket, Python 3.12
+- **Frontend**: HTML, CSS, JavaScript (Vanilla)
+- **AI Framework**: LangChain (ReAct Agent Pattern)
+- **LLM Provider**: Groq (llama-3.1-8b-instant)
+- **Agent Tools**: Extensible tool integration system
+- **Containerization**: Dockerct with various AI capabilities through natural language.
 
----
-
-## Why Inferra?
-
-- **Central Model Hub** – Store and manage all your models in one convenient place.  
-- **Easy Inference** – Run predictions from the UI with minimal setup.  
-- **Deployment Ready** – Seamlessly deploy models for production or research use.  
-- **Framework Agnostic** – Compatible with **PyTorch** and **TensorFlow** frameworks.  
-- **Community Driven** – Share models, ideas, and improvements with the AI community.  
+We are a group of students from the **Faculty of Engineering, Cairo University**, building a versatile chatbot that can access different AI models and tools to assist users with a wide range of tasks.
 
 ---
 
-## Our Vision
+## Features
 
-To create a platform where AI models can be **easily hosted, explored, and used**, empowering researchers, developers, and enthusiasts to leverage AI **without the overhead of setup or integration**.
+- 🤖 **Intelligent AI Agent** - Powered by LangChain's ReAct pattern with reasoning and action capabilities
+- 🔗 **Multi-Model Integration** - Connect and interact with multiple AI models and tools
+- 💬 **Real-time Chat** - WebSocket-based streaming for instant responses
+- 🧠 **Conversational Memory** - Maintains context throughout the conversation
+---
+
+## 🏗️ How It Works
+
+Inferra uses a **LangChain-powered agent** that can:
+- Understand natural language queries
+- Access multiple AI models and tools
+- Provide intelligent responses with reasoning
+- Maintain conversation context across multiple messages
+
+The agent follows the **ReAct pattern** (Reasoning + Acting), allowing it to think through problems and take actions using various tools and models at its disposal.
 
 ---
 
-## Run the App (For Everyone)
+## 🚀 Quick Start
 
-If you just want to **try Inferra** without setting up the development environment, you can run the app directly here:  
+### Prerequisites
 
-👉 [Inferra Live App](https://inferra-git.streamlit.app/)
+- **Python 3.9+**
+- **Docker** (optional, for containerized deployment)
+- **Groq API Key** ([Get one here](https://console.groq.com/))
 
 ---
 
-## Contribution Guide (For Developers)
+## 📦 Running with Docker (Recommended)
 
-We welcome contributions from everyone — whether you want to improve the platform, add new models, or help with documentation. Here’s how you can get started:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Mohamed-Ashraf273/inferra.git
+cd inferra
+```
+
+### 2. Build the Docker image
+
+```bash
+docker build -t inferra:latest .
+```
+
+### 3. Run the container
+
+```bash
+docker run -d \
+  --name inferra-app \
+  -p 8000:8000 \
+  -p 3000:3000 \
+  -e GROK_API_KEY=your_groq_api_key_here \
+  inferra:latest
+```
+
+### 4. Access the application
+
+- **Chat UI**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
+
+### 5. View logs
+
+```bash
+docker logs -f inferra-app
+```
+
+### 6. Stop the application
+
+```bash
+docker stop inferra-app
+docker rm inferra-app
+```
+
+---
+
+## 💻 Running Locally (Without Docker)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Mohamed-Ashraf273/inferra.git
+cd inferra
+```
+
+### 2. Create a virtual environment
+
+```bash
+python -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+```
+
+### 3. Set environment variables
+
+Create a `.env` file in the root directory:
+
+```bash
+GROK_API_KEY=your_groq_api_key_here
+```
+
+Or export directly:
+
+```bash
+export GROK_API_KEY=your_groq_api_key_here
+```
+
+### 4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+
+### 5. Start the backend server
+
+```bash
+python -m uvicorn app.backend.main:app --reload --port 8000
+```
+
+### 6. Start the frontend server (in a new terminal)
+
+```bash
+cd app/frontend
+python -m http.server 3000
+```
+
+### 7. Access the application
+
+- **Chat UI**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
+
+---
+
+## 🎯 Usage
+
+### Chat with the AI Agent
+
+1. Open http://localhost:3000 in your browser
+2. Wait for the connection status to show "Connected"
+3. Type your message and press Enter or click Send
+4. The AI agent will process your request, potentially using multiple tools and models
+5. Watch as the response streams in real-time!
+
+The chatbot can help you with various tasks by leveraging different AI models and tools integrated into the system.
+
+### API Endpoints
+
+- `GET /` - Health check
+- `WebSocket /ws/chat` - WebSocket endpoint for real-time chat
+
+---
+
+## Contributing
+
+We welcome contributions from everyone! Here's how you can get started:
 
 ### How to Contribute
 
@@ -49,41 +185,94 @@ We welcome contributions from everyone — whether you want to improve the platf
     git checkout -b my-feature
     ```
 4. **Make your changes**, following these guidelines:
-    - Add new **model architectures** in `src/models`. 
-    - If you create **new layers**, add them under `src/layers/`.  
-    - To create your own app in Inferra, make a new directory inside 
-      `app/apps/` with the desired app name (e.g., `app/apps/my_app/`); 
-      the directory name will be used to generate the app’s display name 
-      in the UI (e.g., `my_app` → `My App`). This directory must contain an `app.py`
-      file—without it, the app will not be recognized or runnable by Inferra.
-      ```
-       app/
-       └─ apps/
-         └─ my_app/
-           └─ app.py
-      ```
-    - Upload trained model weights to cloud storage (Hugging Face, Google Drive, AWS S3, etc.) — **do not include large model files in the repo**.  
+    - Add new **AI models** or **tools** in `inferra/src/` to extend the chatbot's capabilities.
+    - If you create **new layers** or utilities, add them under `inferra/src/layers/`.
+    - To integrate new AI services, update the agent configuration in `inferra/src/core/`.
+    - Keep the codebase clean and well-documented.
 
-5. **Commit and push** your changes:
+5. **Run pre-commit checks before committing:**
     ```bash
     pre-commit run --all-files --hook-stage manual
+    ```
+
+6. **Commit and push** your changes:
+    ```bash
     git add .
     git commit -m "Describe your changes"
     git push origin my-feature
     ```
-6. **Open a Pull Request** on GitHub and describe your changes clearly.
+
+7. **Open a Pull Request** on GitHub and describe your changes clearly.
 
 ---
 
-## Get Involved
+## Technology Stack
 
-- Add new pre-trained models or layers.  
-- Improve the web interface and UX.  
-- Help with documentation and tutorials.  
-- Test the platform and provide feedback.
-
+- **Backend**: FastAPI, WebSocket, Python 3.12
+- **Frontend**: HTML, CSS, JavaScript (Vanilla)
+- **AI Framework**: LangChain, LangGraph
+- **LLM Provider**: Groq (llama-3.1-8b-instant)
+- **ML Frameworks**: PyTorch, TensorFlow
+- **Containerization**: Docker
 
 ---
 
-Happy coding!
-**Join the Inferra community and help make AI accessible for everyone!**
+## Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `GROK_API_KEY` | Your Groq API key for LLM access | Yes |
+| `API_HOST` | Backend host (default: 0.0.0.0) | No |
+| `API_PORT` | Backend port (default: 8000) | No |
+
+---
+
+## Troubleshooting
+
+### Backend won't start
+
+- Make sure you have set the `GROK_API_KEY` environment variable
+- Check if port 8000 is already in use: `lsof -i :8000`
+- Verify all dependencies are installed: `pip install -r requirements.txt`
+
+### Frontend can't connect to backend
+
+- Ensure the backend is running on port 8000
+- Check the WebSocket URL in `app/frontend/script.js` (should be `ws://localhost:8000/ws/chat`)
+- Look at browser console for connection errors (F12)
+
+### Docker container issues
+
+- Check logs: `docker logs inferra-app`
+- Verify ports are not in use: `docker ps`
+- Rebuild image: `docker build -t inferra:latest . --no-cache`
+
+---
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Team
+
+Created with ❤️ by students from the **Faculty of Engineering, Cairo University**.
+
+---
+
+## Star History
+
+If you find this project useful, please consider giving it a star! ⭐
+
+---
+
+## Contact
+
+For questions or support:
+- Open an issue on [GitHub](https://github.com/Mohamed-Ashraf273/inferra/issues)
+- Join our [Discussions](https://github.com/Mohamed-Ashraf273/inferra/discussions)
+
+---
+
+**Happy coding! Join the Inferra community and help make AI accessible for everyone!** 🚀

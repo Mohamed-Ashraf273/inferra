@@ -1,0 +1,26 @@
+# Docker ignore file
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+.git/
+.gitignore
+.env
+*.md
+notebooks/
+trainings/
+readmes/
+.ruff_cache/
+.github/
+*.ipynb

@@ -1,9 +1,0 @@
-torch
-torchaudio
-fastapi
-uvicorn
-numpy
-pandas
-python-multipart
-soundfile
-inferra

@@ -21,3 +21,6 @@ build/
 
 venv/
 .DS_Store
+
+/huggingface-apis
+.env

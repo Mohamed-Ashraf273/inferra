@@ -1,25 +1,10 @@
-# Deep Learning Frameworks
-tensorflow
-torch
-torchvision
-torchaudio
-# Core Python Utilities
-setuptools
-regex
-packaging
-build
-# ML/DL Libraries & Tools
-dm-tree
-huggingface_hub
-scikit-learn
-opencv-python
-pandas
-numpy
-# Dev & Testing Tools
-tqdm
-pre-commit
-astor
-ruff
-pytest
-pytest-cov
-namex
+fastapi
+langchain==0.1.20
+langchain-core==0.1.53
+langchain-community==0.0.38
+langchainhub
+langchain-groq==0.1.0
+pydantic>=2.0
+uvicorn
+websockets
+groq
