@@ -1,10 +1,10 @@
 fastapi
 python-multipart
-langchain==0.1.20
-langchain-core==0.1.53
-langchain-community==0.0.38
+langchain==0.3.27
+langchain-core==0.3.83
+langchain-community==0.3.31
 langchainhub
-langchain-groq==0.1.0
+langchain-groq==0.3.8
 pydantic>=2.0
 pytest
 uvicorn
