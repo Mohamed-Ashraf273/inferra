@@ -6,8 +6,3 @@ class LLM:
         self.api_key = api_key
         self.temperature = temperature
         self.model = None
-
-    def llm(self):
-        if self.model is None:
-            raise ValueError("Model is not initialized.")
-        return self.model
