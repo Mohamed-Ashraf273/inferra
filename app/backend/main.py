@@ -26,20 +26,18 @@ async def websocket_chat(websocket: WebSocket, session_id: str):
         try:
             session = session_manager.get_session(session_id)
         except ValueError:
-            await websocket.send_text(
-                "[ERROR] Session not found. Please create a new session."
-            )
+            await websocket.send_text("[ERROR] Session not found. Please create a new session.")
             await websocket.close()
             return
 
         while True:
             data = await websocket.receive_text()
             session_manager.update_session_title(session_id, data)
+            session_manager.save_message(session_id, "user", data)
             response = session.generate_reply(data)
-
+            session_manager.save_message(session_id, "assistant", response)
             for char in response:
                 await websocket.send_text(char)
-
             await websocket.send_text("[DONE]")
 
     except WebSocketDisconnect:

@@ -47,7 +47,7 @@ version = {attr = "inferra.src.version.__version__"}
 "inferra.src" = "inferra/src"
 
 [tool.ruff]
-line-length = 80
+line-length = 100
 
 [tool.ruff.lint]
 select = [

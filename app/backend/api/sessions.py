@@ -4,6 +4,7 @@ from fastapi import UploadFile
 from fastapi.responses import JSONResponse
 
 from app.backend.core.session_manager import session_manager
+from app.backend.database import db
 
 router = APIRouter()
 
@@ -35,14 +36,22 @@ async def upload_audio(session_id: str, file: UploadFile = File(...)):
     except ValueError as e:
         return JSONResponse(status_code=404, content={"error": str(e)})
     except Exception as e:
-        return JSONResponse(
-            status_code=500, content={"error": f"Upload failed: {str(e)}"}
-        )
+        return JSONResponse(status_code=500, content={"error": f"Upload failed: {str(e)}"})
 
 
 @router.get("/sessions")
 async def list_sessions():
     return {"sessions": session_manager.list_sessions()}
+
+
+@router.get("/sessions/{session_id}/messages")
+async def get_session_messages(session_id: str):
+    """Get all messages for a session"""
+    try:
+        messages = db.get_messages(session_id)
+        return {"messages": messages}
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @router.delete("/sessions/{session_id}")

@@ -63,9 +63,7 @@ class SoundClassifier(BaseTool):
             result = res.json()
             prediction = result.get("pred_class", "Unknown")
             prediction_with_ext = os.path.splitext(prediction)[0]
-            prediction = " ".join(
-                word.capitalize() for word in prediction_with_ext.split("_")
-            )
+            prediction = " ".join(word.capitalize() for word in prediction_with_ext.split("_"))
 
         except requests.exceptions.RequestException as e:
             return f"Network error while classifying audio: {str(e)}"

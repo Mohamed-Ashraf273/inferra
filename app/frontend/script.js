@@ -73,14 +73,67 @@ function displaySessions(sessions) {
 
 // Switch to a different session
 async function switchSession(sessionId) {
+    console.log(`=== switchSession called with sessionId: ${sessionId} ===`);
     if (ws) {
         ws.close();
     }
     currentSessionId = sessionId;
+    console.log(`currentSessionId set to: ${currentSessionId}`);
     clearChat();
+    console.log('Chat cleared, now loading messages...');
+    
+    // Load previous messages
+    await loadSessionMessages(sessionId);
+    console.log('Messages loaded, connecting WebSocket...');
+    
     connectWebSocket(sessionId);
     loadSessions();
     enableInput();
+    console.log('=== switchSession complete ===');
+}
+
+// Load messages for a session
+async function loadSessionMessages(sessionId) {
+    try {
+        console.log(`Loading messages for session: ${sessionId}`);
+        const response = await fetch(`${API_URL}/sessions/${sessionId}/messages`);
+        console.log(`Response status: ${response.status}`);
+        const data = await response.json();
+        
+        console.log(`Received data:`, data);
+        console.log(`Number of messages: ${data.messages?.length || 0}`);
+        
+        if (data.messages && data.messages.length > 0) {
+            const messagesContainer = document.getElementById("chatMessages");
+            console.log(`Messages container found:`, messagesContainer);
+            console.log(`Container innerHTML before:`, messagesContainer.innerHTML.substring(0, 100));
+            
+            // Clear welcome message first
+            messagesContainer.innerHTML = '';
+            
+            data.messages.forEach((msg, index) => {
+                console.log(`Adding message ${index + 1}: ${msg.role} - ${msg.content.substring(0, 30)}...`);
+                const messageDiv = document.createElement("div");
+                // Map 'assistant' role to 'bot' for CSS styling
+                const displayRole = msg.role === 'assistant' ? 'bot' : msg.role;
+                messageDiv.className = `message ${displayRole}`;
+                
+                const content = document.createElement("div");
+                content.className = "message-content";
+                content.textContent = msg.content;
+                
+                messageDiv.appendChild(content);
+                messagesContainer.appendChild(messageDiv);
+                console.log(`Message ${index + 1} added, container has ${messagesContainer.children.length} children`);
+            });
+            scrollToBottom();
+            console.log(`Final container innerHTML length: ${messagesContainer.innerHTML.length}`);
+        } else {
+            console.log('No messages to load');
+        }
+    } catch (error) {
+        console.error("Error loading messages:", error);
+    }
 }
 
 // Delete a single session

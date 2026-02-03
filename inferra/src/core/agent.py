@@ -33,15 +33,11 @@ class Agent:
         )
 
     def _create_agent(self):
-        return create_react_agent(
-            llm=self.llm, tools=self.tools, prompt=self.prompt
-        )
+        return create_react_agent(llm=self.llm, tools=self.tools, prompt=self.prompt)
 
     def _get_tools(self):
         tools = []
-        tools.append(
-            SoundClassifier(loaded_audio=self.loaded_audio, llm=self.llm)
-        )
+        tools.append(SoundClassifier(loaded_audio=self.loaded_audio, llm=self.llm))
         return tools
 
     def _load_llm(self):
