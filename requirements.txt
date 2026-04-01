@@ -1,6 +1,6 @@
 fastapi
 python-multipart
-langchain==0.3.27
+langchain==0.3.28
 langchain-core==0.3.83
 langchain-community==0.3.31
 langchainhub
