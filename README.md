@@ -1,6 +1,6 @@
 # 🤖 Inferra
 
-**Inferra** is an intelligent AI chatbot powered by **LangChain** and **Groq**, designed to integrate with multiple AI models and tools. It provides a conversational interface where users ca## 🛠️ Technology Stack
+**Inferra** is an intelligent AI chatbot powered by **LangChain** and **Groq**, designed to integrate with multiple AI models and tools. It provides a conversational interface where users ca##  Technology Stack
 
 - **Backend**: FastAPI, WebSocket, Python 3.12
 - **Frontend**: HTML, CSS, JavaScript (Vanilla)
@@ -18,14 +18,14 @@ We are a group of students from the **Faculty of Engineering, Cairo University**
 
 ## Features
 
-- 🤖 **Intelligent AI Agent** - Powered by LangChain's ReAct pattern with reasoning and action capabilities
-- 🔗 **Multi-Model Integration** - Connect and interact with multiple AI models and tools
-- 💬 **Real-time Chat** - WebSocket-based streaming for instant responses
-- 🧠 **Conversational Memory** - Maintains context throughout the conversation
-- 🎵 **Sound Classification** - Upload audio files and get intelligent sound analysis and classification
+- **Intelligent AI Agent** - Powered by LangChain's ReAct pattern with reasoning and action capabilities
+- **Multi-Model Integration** - Connect and interact with multiple AI models and tools
+- **Real-time Chat** - WebSocket-based streaming for instant responses
+- **Conversational Memory** - Maintains context throughout the conversation
+- **Sound Classification** - Upload audio files and get intelligent sound analysis and classification
 ---
 
-## 🏗️ How It Works
+## How It Works
 
 Inferra uses a **LangChain-powered agent** that can:
 - Understand natural language queries
@@ -47,7 +47,7 @@ The agent follows the **ReAct pattern** (Reasoning + Acting), allowing it to thi
 
 ---
 
-## 📦 Running with Docker (Recommended)
+## Running with Docker (Recommended)
 
 ### 1. Clone the repository
 
@@ -250,26 +250,3 @@ We welcome contributions from everyone! Here's how you can get started:
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
----
-
-## Team
-
-Created with ❤️ by students from the **Faculty of Engineering, Cairo University**.
-
----
-
-## Star History
-
-If you find this project useful, please consider giving it a star! ⭐
-
----
-
-## Contact
-
-For questions or support:
-- Open an issue on [GitHub](https://github.com/Mohamed-Ashraf273/inferra/issues)
-- Join our [Discussions](https://github.com/Mohamed-Ashraf273/inferra/discussions)
-
----
-
-**Happy coding! Join the Inferra community and help make AI accessible for everyone!** 🚀
