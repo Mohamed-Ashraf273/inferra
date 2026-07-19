@@ -19,8 +19,10 @@ build/
 # Pycharm files
 .idea/
 
-venv/
+.venv/
 .DS_Store
 
 /huggingface-apis
 .env
+
+data/*
