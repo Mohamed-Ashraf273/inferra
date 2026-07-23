@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { Music, Send } from "lucide-react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import { useUploadAudio } from "../../hooks/useSessionMutations";
 import { Button } from "../ui/Button";
 
@@ -18,17 +19,7 @@ export function ChatInput({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const uploadAudio = useUploadAudio(sessionId);
-  const SendIcon = (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  const SendIcon = <Send />;
 
   const resizeTextarea = () => {
     const el = textareaRef.current;
@@ -63,7 +54,7 @@ export function ChatInput({
     }
   };
   return (
-    <div>
+    <div className="flex items-end gap-3 border-t border-neutral-200 bg-white p-4">
       <input
         ref={fileInputRef}
         type="file"
@@ -77,7 +68,7 @@ export function ChatInput({
         disabled={disabled || uploadAudio.isPending}
         onClick={() => fileInputRef.current?.click()}
       >
-        Music {/** Add ToneIcon or Microphone Icon */}
+        <Music />
       </Button>
       <textarea
         ref={textareaRef}

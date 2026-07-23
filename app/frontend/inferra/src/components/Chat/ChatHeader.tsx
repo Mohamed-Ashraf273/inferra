@@ -1,7 +1,7 @@
+import { Menu } from "lucide-react";
 import type { ConnectionStatus } from "../../types/chat";
 import { Button } from "../ui/Button";
 import { StatusBadge } from "../ui/StatusBadge";
-
 type ChatHeaderProps = {
   status: ConnectionStatus;
   onToggleSidebar: () => void;
@@ -17,10 +17,7 @@ export function ChatHeader({ status, onToggleSidebar }: ChatHeaderProps) {
           // variant="ghost"
           className="flex size-10 items-center justify-center rounded-lg bg-white/10 text-white transition-colors duration-150 hover:bg-white/20"
         >
-          {/** TODO: Add Hamburger icon here
-           * TODO: install Luicide Icons
-           */}
-          Hamburger Menu
+          <Menu className="size-8" />
         </Button>
         <h1 className="text-lg font-semibold text-white">Inferra Chat Agent</h1>
       </div>

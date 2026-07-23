@@ -1,4 +1,8 @@
-import type { ChatSessionsResponse, UploadAudioResponse } from "../types/chat";
+import type {
+  ChatSessionsResponse,
+  SessionMessagesResponse,
+  UploadAudioResponse,
+} from "../types/chat";
 
 // TODO: Add Types for .env
 export const API_URL = import.meta.env.VITE_API_URL;
@@ -39,4 +43,9 @@ export function uploadAudio(
     method: "POST",
     body: formData,
   });
+}
+export function fetchSessionMessages(
+  sessionId: string,
+): Promise<SessionMessagesResponse> {
+  return request<SessionMessagesResponse>(`/sessions/${sessionId}/messages`);
 }

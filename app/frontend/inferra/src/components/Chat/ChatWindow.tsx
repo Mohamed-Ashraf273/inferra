@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import type { ChatMessage } from "../../types/chat";
-
+import { MessageBubble } from "./MessageBubble";
+import { TypingIndicator } from "./TypingIndicator";
+import { WelcomeMessage } from "./WelcomeMessage";
 type ChatWindowProps = {
   messages: ChatMessage[];
   isBotTyping: boolean;
@@ -34,7 +36,7 @@ export function ChatWindow({
     );
   })();
   return (
-    <div>
+    <div className="scrol-thin flex flex-1 flex-col gap-4 overflow-y-auto bg-neutral-50 p-5">
       {windowContent}
       <div ref={bottomRef} />
     </div>

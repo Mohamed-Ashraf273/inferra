@@ -16,7 +16,7 @@ export interface PersistedMessage {
 export interface SessionMessagesResponse {
   messages: PersistedMessage[];
 }
-export type DisplayRole = "user" | "bot" | "system";
+export type DisplayRole = MessageRole;
 export type MessageStatus = "sent" | "streaming" | "complete" | "error";
 
 export interface ChatMessage {

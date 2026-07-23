@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { Trash } from "lucide-react";
+import { useMemo, type MouseEvent } from "react";
 import type { ChatSession } from "../../types/chat";
 import { Button } from "../ui/Button";
 
@@ -22,7 +23,7 @@ export function SessionItem({
   onSelect,
   onDelete,
 }: SessionItemProps) {
-  const handleDeleteSession = (e) => {
+  const handleDeleteSession = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     onDelete(session.session_id);
   };
@@ -48,7 +49,7 @@ export function SessionItem({
         onClick={handleDeleteSession}
         className="size-8 flex shrink-0 rounded-md "
       >
-        Trash {/** TOOD: Add Trash Icon here */}
+        <Trash /> {/** TOOD: Add <TrasTrashh/> Icon here */}
       </Button>
     </div>
   );

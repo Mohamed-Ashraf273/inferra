@@ -1,3 +1,4 @@
+import { Plus, Trash } from "lucide-react";
 import { useMemo } from "react";
 import {
   useCreateSession,
@@ -68,34 +69,37 @@ export function Sidebar({
       </div>
     );
   })();
+  if (!isOpen) return null;
   return (
-    <aside
-      className={`flex w-full shrink-0 flex-col overflow-hidden border-r border-neutral-200 bg-white md:w-80 ${sidebarState}`}
-    >
-      <div className="bg-navy-800 p-5">
-        <h2 className="text-lg font-semibold text-white">Chat Sessions</h2>
-      </div>
-      <div className="flex flex-col gap-2 border-b border-neutral-200 p-4">
-        <Button
-          variant="primary"
-          icon={<span> {/** TODO: Add Plus Icon */}</span>}
-          onClick={handleCreate}
-          disabled={createSession.isPending}
-        >
-          New Chat
-        </Button>
-        <Button
-          variant="danger"
-          icon={<span>{/** TODO: Add Trash Icon */}</span>}
-          onClick={handleDeleteAll}
-          disabled={sessions.length === 0 || deleteAllSessions.isPending}
-        >
-          Delete All
-        </Button>
-      </div>
-      <div className="scroll-thin flex-1 overflow-y-auto p-3">
-        {sessionsLists}
-      </div>
-    </aside>
+    <div className="mx-auto flex h-full w-fit max-w-6xl overflow-hidden rounded-none bg-white shadow-none md:rounded-l-2xl md:shadow-xl">
+      <aside
+        className={`flex w-full shrink-0 flex-col overflow-hidden  bg-white md:w-80 ${sidebarState}`}
+      >
+        <div className="bg-navy-800 p-5">
+          <h2 className="text-lg font-semibold text-white">Chat Sessions</h2>
+        </div>
+        <div className="flex flex-col gap-2 border-b border-neutral-200 p-4">
+          <Button
+            variant="primary"
+            icon={<Plus />}
+            onClick={handleCreate}
+            disabled={createSession.isPending}
+          >
+            New Chat
+          </Button>
+          <Button
+            variant="danger"
+            icon={<Trash />}
+            onClick={handleDeleteAll}
+            disabled={sessions.length === 0 || deleteAllSessions.isPending}
+          >
+            Delete All
+          </Button>
+        </div>
+        <div className="scroll-thin flex-1 overflow-y-auto p-3">
+          {sessionsLists}
+        </div>
+      </aside>
+    </div>
   );
 }
