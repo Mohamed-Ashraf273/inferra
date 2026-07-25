@@ -7,20 +7,20 @@ type MessageBubbleProps = {
 export function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.role === "user";
   const messageStyle = isUser
-    ? "bg-navy-700 text-white"
-    : "border border-neutral-200 bg-white text-neutral-800";
-  const icon = isUser ? <User /> : <Bot />; // TODO: Replace with real icons
+    ? "bg-primary text-text-inverse"
+    : "border border-border bg-surface text-text";
+  const icon = isUser ? <User /> : <Bot />;
   const iconStyle = isUser
-    ? "bg-navy-700 text-white"
-    : "bg-navy-100 text-navy-700";
+    ? "bg-primary text-text-inverse"
+    : "bg-surface-2 border border-neutral-400 shadow-sm text-secondary";
   const messageWrapperStyle = isUser
     ? "ml-auto flex-row-reverse self-end"
     : "self-start";
   if (message.role == "system") {
     const messageStyle =
       message.status === "error"
-        ? "bg-red-50 text-status-offline"
-        : "bg-navy-50 text-navy-700";
+        ? "bg-danger/10 text-danger"
+        : "bg-surface-2 text-secondary";
     return (
       <div className="animate-message-in flex justify-center">
         <div
@@ -41,11 +41,9 @@ export function MessageBubble({ message }: MessageBubbleProps) {
         {icon}
       </div>
       <div
-        className={`rounded-[var(--radius-message) px-4 py-2.5 text-sm leading-relaxed shadow-sm ${messageStyle}]`}
+        className={`rounded-message px-4 py-2.5 text-sm leading-relaxed shadow-sm ${messageStyle}`}
       >
-        <span
-          className={`whitespace-pre-wrap wrap-break-word ${isUser && "text-white"}`}
-        >
+        <span className="whitespace-pre-wrap wrap-break-word">
           {message.content}
         </span>
       </div>

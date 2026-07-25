@@ -19,7 +19,6 @@ export function ChatInput({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const uploadAudio = useUploadAudio(sessionId);
-  const SendIcon = <Send />;
 
   const resizeTextarea = () => {
     const el = textareaRef.current;
@@ -54,7 +53,7 @@ export function ChatInput({
     }
   };
   return (
-    <div className="flex items-end gap-3 border-t border-neutral-200 bg-white p-4">
+    <div className="flex items-end gap-3 border-t border-border bg-surface p-4">
       <input
         ref={fileInputRef}
         type="file"
@@ -64,7 +63,7 @@ export function ChatInput({
       />
       <Button
         aria-label="Upload audio file"
-        variant="secondary"
+        variant="primary"
         disabled={disabled || uploadAudio.isPending}
         onClick={() => fileInputRef.current?.click()}
       >
@@ -81,14 +80,15 @@ export function ChatInput({
         disabled={disabled}
         placeholder="Type your message here..."
         rows={1}
-        className="max-h-32 flex-1 resize-none rounded-2xl border border-neutral-200 px-4 py-3 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-navy-400 focus:outline-none disabled:bg-neutral-500  disabled:text-neutral-400"
+        className="max-h-32 flex-1 resize-none rounded-2xl px-4 py-3 border border-border-strong text-sm text-text placeholder:text-text-muted focus:border-primary focus:outline-none disabled:bg-disabled disabled:text-disabled-text"
       />
       <Button
+        variant={"primary"}
         aria-label="send message"
         disabled={disabled || value.trim().length === 0}
         onClick={handleSend}
       >
-        {SendIcon}
+        <Send />
       </Button>
     </div>
   );

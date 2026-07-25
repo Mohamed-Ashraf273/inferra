@@ -11,15 +11,15 @@ export function StatusBadge({ status }: { status: ConnectionStatus }) {
   const style = (() => {
     switch (status) {
       case "connected":
-        return "bg-status-online";
+        return "bg-success";
       case "connecting":
-        return "animate-pulse bg-neutral-100";
+        return "animate-pulse bg-surface-2";
       default:
-        return "bg-status-offline";
+        return "bg-danger";
     }
   })();
   return (
-    <div className="flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-sm text-white">
+    <div className="flex items-center gap-2 rounded-full bg-surface/10 px-3.5 py-1.5 text-sm text-text-inverse">
       <span className={`size-2.5 rounded-full ${style}`} />
       <span>{LABELS[status]}</span>
     </div>

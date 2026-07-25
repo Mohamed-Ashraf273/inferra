@@ -10,12 +10,12 @@ type SessionItemProps = {
   onDelete: (sessionId: string) => void;
 };
 const activeStyles = {
-  p: "text-navy-100",
-  div: "bg-navy-700 text-white",
+  p: "text-text-inverse",
+  div: "bg-secondary-active text-text-inverse ",
 };
 const nonActiveStyles = {
-  p: "text-netural-500",
-  div: "bg-netural-50 hover:bg-netural-100",
+  p: "text-text-muted",
+  div: "bg-surface-2 hover:text-white",
 };
 export function SessionItem({
   session,
@@ -32,24 +32,29 @@ export function SessionItem({
     [isActive],
   );
   return (
-    <div>
-      <Button
-        variant="ghost"
-        onClick={() => onSelect(session.session_id)}
-        className={`min-w-0 flex-1 text-left ${styles["div"]}`}
-      >
-        <p className={`truncate text-sm font-medium`}>{session.title}</p>
-        <p className={`text-xs styles["p"]`}>
+    <div
+      className={`flex items-center gap-2 w-full rounded-lg p-2.5  cursor-pointer ${styles.div}`}
+      onClick={() => onSelect(session.session_id)}
+    >
+      <div className="min-w-0 flex-1 flex items-center justify-between text-left px-2">
+        <p className="truncate text-sm font-medium text-white">
+          {session.title}
+        </p>
+        <p className={`text-xs ${styles.p}`}>
           {session.message_count} messages
         </p>
-      </Button>
+      </div>
+
       <Button
         aria-label={`delete ${session.title}`}
         variant="danger"
-        onClick={handleDeleteSession}
-        className="size-8 flex shrink-0 rounded-md "
+        onClick={(e) => {
+          e.stopPropagation();
+          handleDeleteSession(e);
+        }}
+        className="p-2 shrink-0 rounded-md mr-2"
       >
-        <Trash /> {/** TOOD: Add <TrasTrashh/> Icon here */}
+        <Trash />
       </Button>
     </div>
   );

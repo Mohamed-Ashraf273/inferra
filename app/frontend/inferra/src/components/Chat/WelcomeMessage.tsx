@@ -17,10 +17,10 @@ export function WelcomeMessage({ hasSession }: WelcomeMessageProps) {
     [hasSession],
   );
   return (
-    <div className="m-auto flex flex-col items-center gap-2 px-6 py-16 text-center text-neutral-500">
+    <div className="m-auto flex flex-col items-center gap-2 px-6 py-16 text-center text-text-muted">
       <Hand />
-      <p className="text-base font-medium text-neutral-700">{welcomeContent}</p>
-      <p className="text-sm">{detailsContent}</p>
+      <p className="text-base font-medium text-text">{welcomeContent}</p>
+      <p className="text-sm text-text-muted">{detailsContent}</p>
     </div>
   );
 }

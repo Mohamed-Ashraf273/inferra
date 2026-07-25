@@ -47,7 +47,7 @@ export function Sidebar({
     [isOpen],
   );
   const sessionsLists = (() => {
-    const pStyle = "p-6 text-center text-sm text-neutral-400";
+    const pStyle = "p-6 text-center text-sm text-text-muted";
     if (isLoading) {
       // TODO: Replace with a loader component
       return <p className={pStyle}>Loading Sessions ...</p>;
@@ -71,35 +71,37 @@ export function Sidebar({
   })();
   if (!isOpen) return null;
   return (
-    <div className="mx-auto flex h-full w-fit max-w-6xl overflow-hidden rounded-none bg-white shadow-none md:rounded-l-2xl md:shadow-xl">
-      <aside
-        className={`flex w-full shrink-0 flex-col overflow-hidden  bg-white md:w-80 ${sidebarState}`}
-      >
-        <div className="bg-navy-800 p-5">
-          <h2 className="text-lg font-semibold text-white">Chat Sessions</h2>
-        </div>
-        <div className="flex flex-col gap-2 border-b border-neutral-200 p-4">
-          <Button
-            variant="primary"
-            icon={<Plus />}
-            onClick={handleCreate}
-            disabled={createSession.isPending}
-          >
-            New Chat
-          </Button>
-          <Button
-            variant="danger"
-            icon={<Trash />}
-            onClick={handleDeleteAll}
-            disabled={sessions.length === 0 || deleteAllSessions.isPending}
-          >
-            Delete All
-          </Button>
-        </div>
-        <div className="scroll-thin flex-1 overflow-y-auto p-3">
-          {sessionsLists}
-        </div>
-      </aside>
-    </div>
+    <aside
+      className={`mx-auto flex h-full w-fit max-w-6xl overflow-hidden rounded-none bg-surface shadow-none md:rounded-l-2xl md:shadow-xl  shrink-0 flex-col n pb-4 md:w-80 ${sidebarState}`}
+    >
+      <div className="flex items-center bg-secondary p-5.5">
+        <h2 className="text-lg font-semibold text-text-inverse">
+          Chat Sessions
+        </h2>
+      </div>
+      <div className="flex flex-col gap-2 border-b border-border p-4">
+        <Button
+          variant="primary"
+          icon={<Plus />}
+          onClick={handleCreate}
+          disabled={createSession.isPending}
+          className="w-full"
+        >
+          New Chat
+        </Button>
+        <Button
+          variant="danger"
+          icon={<Trash />}
+          onClick={handleDeleteAll}
+          disabled={sessions.length === 0 || deleteAllSessions.isPending}
+          className="w-full"
+        >
+          Delete All
+        </Button>
+      </div>
+      <div className="scroll-thin flex-1 overflow-y-auto p-3">
+        {sessionsLists}
+      </div>
+    </aside>
   );
 }

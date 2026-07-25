@@ -9,13 +9,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-navy-700 text-white hover:bg-navy-800 focus-visible:ring-navy-400",
+    "bg-primary text-text-inverse hover:bg-secondary-hover focus-visible:ring-focus disabled:bg-disabled disabled:text-disabled-text",
   secondary:
-    "bg-neutral-100 text-navy-700 hover:bg-neutral-200 focus-visible:ring-navy-300",
+    "bg-surface text-primary hover:bg-surface-2 focus-visible:ring-focus disabled:bg-disabled disabled:text-disabled-text",
   danger:
-    "bg-white text-status-offline border border-netural-200 hover:bg-red-50 focus-visible:ring-status-offline",
+    "bg-surface text-danger border border-border hover:bg-danger/10 focus-visible:ring-danger disabled:bg-disabled disabled:text-disabled-text",
   ghost:
-    "bg-transparent text-navy-700 hover:bg-navy-50 focus-visible:ring-navy-300",
+    "bg-ghost text-primary hover:bg-surface-2 focus-visible:ring-focus disabled:bg-disabled disabled:text-disabled-text",
 };
 export function Button({
   variant = "primary",
@@ -26,7 +26,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${variantClasses[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-150 [&>svg]:size-5 [&>svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${variantClasses[variant]} ${className}`}
       {...rest}
     >
       {icon}

@@ -23,7 +23,7 @@ export function ChatWindow({
   const windowContent = (() => {
     if (isLoading)
       return (
-        <p className="m-auto text-sm text-neutral-400">Loading messages...</p>
+        <p className="m-auto text-sm text-text-muted">Loading messages...</p>
       ); // TODO: Add Loading Spinner
     if (isEmpty) return <WelcomeMessage hasSession={hasSession} />;
     return (
@@ -36,7 +36,7 @@ export function ChatWindow({
     );
   })();
   return (
-    <div className="scrol-thin flex flex-1 flex-col gap-4 overflow-y-auto bg-neutral-50 p-5">
+    <div className="scrol-thin flex flex-1 flex-col gap-4 overflow-y-auto bg-surface-2 p-5">
       {windowContent}
       <div ref={bottomRef} />
     </div>

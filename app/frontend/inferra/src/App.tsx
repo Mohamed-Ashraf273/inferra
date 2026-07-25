@@ -19,7 +19,7 @@ export default function App() {
 
   const inputDisabled = activeSessionId == null || status != "connected";
   return (
-    <div className="flex h-full w-full flex-col bg-neutral-100 md:flex-row md:p-6">
+    <div className="flex h-full w-full flex-col bg-background md:flex-row md:p-6">
       <Sidebar
         isOpen={isSidebarOpen}
         activeSessionId={activeSessionId}
@@ -27,7 +27,7 @@ export default function App() {
         onSessionCreated={setActiveSessionId}
         onSessionSelected={setActiveSessionId}
       />
-      <div className="flex flex-1  flex-col bg-white justify-between">
+      <div className="flex flex-1 flex-col bg-surface justify-between">
         <ChatHeader
           status={status}
           onToggleSidebar={() => setIsSidebarOpen((open) => !open)}

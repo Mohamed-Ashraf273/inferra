@@ -4,32 +4,35 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
+  --color-primary: #003652;
+  --color-primary-hover: #1E3A8A;
+  --color-primary-active: #172554;
 
-  --color-navy-50: #eef2f8;
-  --color-navy-100: #dbe4f0;
-  --color-navy-200: #b3c5e0;
-  --color-navy-300: #82a0cb;
-  --color-navy-400: #4f76a8;
-  --color-navy-500: #2f5480;
-  --color-navy-600: #1f3d63;
-  --color-navy-700: #172f4d;
-  --color-navy-800: #10233b;
-  --color-navy-900: #0b1a2c;
+  --color-secondary: #004568;
+  --color-secondary-hover: #005A87;
+  --color-secondary-active: #003652;
 
-  --color-neutral-0: #ffffff;
-  --color-neutral-50: #f7f8fa;
-  --color-neutral-100: #eef1f5;
-  --color-neutral-200: #e2e6ec;
-  --color-neutral-300: #cbd2dc;
-  --color-neutral-400: #97a1b0;
-  --color-neutral-500: #6b7686;
-  --color-neutral-600: #4c5566;
-  --color-neutral-700: #333c4d;
-  --color-neutral-800: #1f2534;
-  --color-neutral-900: #12151d;
+  --color-background: #E8E7DB;
+  --color-surface: #F4F3E8;
+  --color-surface-2: #DFDECE;
 
-  --color-status-online: #2f9e6e;
-  --color-status-offline: #c94f4f;
+  --color-border: #C8C6B6;
+  --color-border-strong: #AEAC9C;
+
+  --color-text: #004568;
+  --color-text-muted: #5D7F92;
+  --color-text-light: #8DA4B3;
+  --color-text-inverse: #FFFFFF;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  --color-disabled: #C8C6B6;
+  --color-disabled-text: #8DA4B3;
+
+  --color-focus: #1D4ED8;
+  --color-ghost: transparent;
 
   --radius-message: 0.875rem;
 }
@@ -42,6 +45,8 @@ body,
 
 body {
   font-family: var(--font-sans);
+  background: var(--color-background);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -54,12 +59,12 @@ body {
 }
 
 .scroll-thin::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-300);
+  background: var(--color-border);
   border-radius: 999px;
 }
 
 .scroll-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-400);
+  background: var(--color-border-strong);
 }
 
 @keyframes message-in {
