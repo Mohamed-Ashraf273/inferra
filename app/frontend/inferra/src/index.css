@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --color-primary: #003652;
+  --color-primary-hover: #1E3A8A;
+  --color-primary-active: #172554;
+
+  --color-secondary: #004568;
+  --color-secondary-hover: #005A87;
+  --color-secondary-active: #003652;
+
+  --color-background: #E8E7DB;
+  --color-surface: #F4F3E8;
+  --color-surface-2: #DFDECE;
+
+  --color-border: #C8C6B6;
+  --color-border-strong: #AEAC9C;
+
+  --color-text: #004568;
+  --color-text-muted: #5D7F92;
+  --color-text-light: #8DA4B3;
+  --color-text-inverse: #FFFFFF;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  --color-disabled: #C8C6B6;
+  --color-disabled-text: #8DA4B3;
+
+  --color-focus: #1D4ED8;
+  --color-ghost: transparent;
+
+  --radius-message: 0.875rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-strong);
+}
+
+@keyframes message-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-message-in {
+  animation: message-in 0.2s ease-out;
+}
+
+@keyframes typing-bounce {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-typing-bounce {
+  animation: typing-bounce 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-message-in,
+  .animate-typing-bounce {
+    animation: none;
+  }
+}

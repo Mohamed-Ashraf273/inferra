@@ -10,9 +10,9 @@ class Settings(BaseSettings):
     API_HOST: str = "0.0.0.0"
     API_PORT: int = 8000
 
-    ANTHROPIC_API_KEY: str = ""
+    MODEL_API_KEY: str = ""
     DEFAULT_MODEL: str = "claude-sonnet-4-5-20250929"
-    API_PROVIDER: Literal["claude", "grok", "gemini"] = "claude"
+    API_PROVIDER: Literal["claude", "grok", "gemini"] = "gemini"
 
     DOCKER_IMAGE: str = "inferra:latest"
 
